@@ -1,0 +1,30 @@
+.row {
+    text-align: center;
+}
+
+.row h6 {
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.botaozin{
+    background-color: #3897a8;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.usuarioemail {
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+body {
+    background-color: #bbd1d4;
+}
