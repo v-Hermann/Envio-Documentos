@@ -1,0 +1,33 @@
+.dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        z-index: 1;
+      }
+      .dropdown:hover .dropdown-content {
+        display: block;
+        background-color: lightblue;
+      }
+       /* Adicione o CSS aqui */
+      .fixed-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background-color: lightblue;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+      }
+      .header-content {
+        color: white;
+        font-size: 20px;
+      }
+
+li {
+}
