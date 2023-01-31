@@ -1,0 +1,21 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}Login{% endblock %}
+
+{% block content %}
+
+<h2>Entrar</h2>
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="primaryAction" type="submit">ENTRAR</button>
+  <a href="{% url 'account_reset_password' %}">Esqueci minha senha</a>
+</form>
+
+{% endblock %}
