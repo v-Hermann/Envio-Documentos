@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    background-color: lightblue;
+}
+
+#fileupload-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#fileupload-form > a {
+    text-decoration: none;
+    color: black;
+}
+
+#fileupload-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px black dashed;
+    border-radius: 5px;
+    height: 250px;
+    width: 500px;
+    background-color: lightcyan;
+}
+
+#fileupload-form > input {
+    margin: 10px;
+}
