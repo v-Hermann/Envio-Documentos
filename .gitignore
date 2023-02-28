@@ -1,1 +1,6 @@
 *.pyc
+__pycache__/
+Lib/
+Scripts/
+Include/
+pyvenv.cfg
