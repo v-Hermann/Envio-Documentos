@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'administrador/home/home.css' %}">
+    <title>Meu Site</title>
+  </head>
+  <body>
+    <div class="fixed-header">
+      <div class="dropdown">
+        <p>Menu</p>
+        <div class="dropdown-content">
+        <ul>
+          <li><a href="#">Alteração Cadastral</a></li>
+          <li><a href="#">Análise Documental</a></li>
+          <li> <a href="#">Reabrir processo individual</a></li>
+          </ul>
+        </div>
+        </div>
+    <br><br><br><br><br>
+    <div class="dropdown">
+    <p>Bem-vindo, $User</p>
+    <div class="dropdown-content">
+    <ul>
+      <li><a href="#">Alteração Cadastral</a></li>
+      <li><a href="#">Análise Documental</a></li>
+      <li> <a href="#">Reabrir processo individual</a></li>
+    <ul>
+    </div>
+  </body>
+</html>
