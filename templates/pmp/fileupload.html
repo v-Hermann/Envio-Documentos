@@ -10,7 +10,8 @@
 </head>
 <body>
     <form action="" method="post" id="fileupload-form">
-        <a href="#"><div id="fileupload-div">Clique aqui para enviar o documento</div></a>
+        {% csrf_token %}
+        <a href=""><div id="fileupload-div">Clique aqui para enviar o documento{{form.as_div}}</div></a>
         <input type="submit" value="Enviar">
     </form>
 </body>
