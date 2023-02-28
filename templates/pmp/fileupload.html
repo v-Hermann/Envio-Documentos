@@ -9,9 +9,10 @@
     <title>FileUpload</title>
 </head>
 <body>
-    <form action="" method="post" id="fileupload-form">
+    <form action="" method="post" id="fileupload-form" enctype="multipart/form-data">
         {% csrf_token %}
         <a href=""><div id="fileupload-div">Clique aqui para enviar o documento{{form.as_div}}</div></a>
+        <input type="file" name="my_file">
         <input type="submit" value="Enviar">
     </form>
 </body>
