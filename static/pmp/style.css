@@ -8,6 +8,7 @@ body {
     margin: 0px;
     padding: 0px;
     background-color: lightblue;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #fileupload-form {
@@ -17,22 +18,32 @@ body {
     justify-content: center;
 }
 
-#fileupload-form > a {
-    text-decoration: none;
-    color: black;
-}
-
-#fileupload-div {
+#fileupload-label {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 4px black dashed;
+    border: 4px dashed black;
     border-radius: 5px;
     height: 250px;
     width: 500px;
     background-color: lightcyan;
+    cursor: pointer;
 }
 
-#fileupload-form > input {
+#fileupload-input_file {
+    display: none;
+}
+
+#fileupload-form > input[type="submit"] {
     margin: 10px;
+    background-color: #3897A8;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#fileupload-form > input[type="submit"]:hover {
+    background-color: #45a049;
 }

@@ -1,6 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
-from . import forms
+from django.shortcuts import render
+from django.http import HttpResponse
 from .models import FilesUploaded
 
 def home(request):
@@ -8,18 +7,10 @@ def home(request):
     return HttpResponse('Homepage')
 
 def fileupload(request):
-    file = get_object_or_404(FilesUploaded, pk=1)
-
-    if request.method == 'POST':
-        form = forms.FileUpload(request.POST)
-        if form.is_valid():
-            file.document_generic = form.generic_file
-            file.save()
-            return HttpResponse('Enviado!')
-    else:
-        form = FilesUploaded()
-        context = {
-            'form': form,
-        }
-
-        return render(request, 'pmp/fileupload.html', context=context)
+    if request.method == 'GET':
+        return render(request, 'pmp/fileupload.html')
+    elif request.method == 'POST':
+        file_uploaded = request.FILES.get('filename')
+        file = FilesUploaded(titulo=file_uploaded.name, path_doc=file_uploaded)
+        file.save()
+        return HttpResponse('Enviado!')
