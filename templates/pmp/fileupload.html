@@ -10,116 +10,117 @@
 </head>
 
 <body>
-    <div>
-        <form action="{% url 'fileupload' %}" method="POST" id="fileupload-form" enctype="multipart/form-data">
-            {% csrf_token %}
+    <form action="{% url 'fileupload' %}" method="POST" id="fileupload-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
 
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui seu Registro de Empregado Preenchido</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
+        <div id=fileupload-div>
+            <span>Anexe aqui seu Registro de Empregado Preenchido</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
 
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui sua carteira de identidade / CPF</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
+        <div id=fileupload-div>
+            <span>Anexe aqui sua carteira de identidade / CPF</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
 
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui seu PIS/PASEP</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-        
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui seu comprovante de residência</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui seu grau de instrução</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui a Carteira do Conselho Regional de sua categoria</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui sua carteira de habilitação</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui seu título de eleitor</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-            
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui sua carteira de trabalho</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-        
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui sua certidão do cartório eleitoral que comprova quitação com as obrigações legais</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
+        <div id=fileupload-div>
+            <span>Anexe aqui seu PIS/PASEP</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
     
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui a certidão de casamento e de filhos (menores de 14 anos)</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
+        <div id=fileupload-div>
+            <span>Anexe aqui seu comprovante de residência</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+
+        <div id=fileupload-div>
+            <span>Anexe aqui seu grau de instrução</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+
+        <div id=fileupload-div>
+            <span>Anexe aqui a Carteira do Conselho Regional de sua categoria</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+
+        <div id=fileupload-div>
+            <span>Anexe aqui sua carteira de habilitação</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+
+        <div id=fileupload-div>
+            <span>Anexe aqui seu título de eleitor</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
         
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui CPF dos dependentes (caso tenha)</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-        
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui seu certificado de reservista (masculino)</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-        
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui sua declaração de bens ou imposto de renda</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-        
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui declaração de que não é aposentado por invalidez</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-        
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui certidão de não acúmulo preenchida</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
+        <div id=fileupload-div>
+            <span>Anexe aqui sua carteira de trabalho</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
     
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui declaração de nepotismo</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
+        <div id=fileupload-div>
+            <span>Anexe aqui sua certidão do cartório eleitoral que comprova quitação com as obrigações legais</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
 
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui Atestado de Saúde Ocupacional (ASO)</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
+        <div id=fileupload-div>
+            <span>Anexe aqui a certidão de casamento e de filhos (menores de 14 anos)</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+    
+        <div id=fileupload-div>
+            <span>Anexe aqui CPF dos dependentes (caso tenha)</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+    
+        <div id=fileupload-div>
+            <span>Anexe aqui seu certificado de reservista (masculino)</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+    
+        <div id=fileupload-div>
+            <span>Anexe aqui sua declaração de bens ou imposto de renda</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+    
+        <div id=fileupload-div>
+            <span>Anexe aqui declaração de que não é aposentado por invalidez</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+    
+        <div id=fileupload-div>
+            <span>Anexe aqui certidão de não acúmulo preenchida</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
 
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui certidão negativa criminal</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
+        <div id=fileupload-div>
+            <span>Anexe aqui declaração de nepotismo</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
 
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui certidão negativa criminal PF</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-      
-            <label for="fileupload-input_file" id=fileupload-label>
-                <span>Anexe aqui declaração de não ter sofrido penalidades administrativas</span>
-                <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-            </label>
-        </form>
-    </div>
-</div>
+        <div id=fileupload-div>
+            <span>Anexe aqui Atestado de Saúde Ocupacional (ASO)</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+
+        <div id=fileupload-div>
+            <span>Anexe aqui certidão negativa criminal</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+
+        <div id=fileupload-div>
+            <span>Anexe aqui certidão negativa criminal PF</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+    
+        <div id=fileupload-div>
+            <span>Anexe aqui declaração de não ter sofrido penalidades administrativas</span>
+            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
+        </div>
+        </div>
+
+        <input type="submit" value="Enviar documentos">
+    </form>
 </body>
 </html>
