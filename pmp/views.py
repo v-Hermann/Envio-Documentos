@@ -2,9 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import FilesUploaded
 
-def home(request):
-    ''' Homepage temporária '''
-    return HttpResponse('Homepage')
 
 def fileupload(request):
     if request.method == 'GET':
