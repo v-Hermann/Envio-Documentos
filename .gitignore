@@ -7,3 +7,4 @@ Include/
 pyvenv.cfg
 .vscode
 db.sqlite3
+README.md
