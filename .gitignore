@@ -4,6 +4,7 @@ venv/
 Lib/
 Scripts/
 Include/
+.idea/
 pyvenv.cfg
 .vscode
 db.sqlite3
