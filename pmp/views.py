@@ -1,8 +1,10 @@
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import FilesUploaded
 
 
+@login_required
 def fileupload(request):
     if request.method == 'GET':
         return render(request, 'pmp/fileupload.html')

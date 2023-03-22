@@ -46,6 +46,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'projeto_organizado.urls'
 
+LOGIN_REDIRECT_URL = 'login_success'
+LOGIN_URL = '/accounts/login/'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

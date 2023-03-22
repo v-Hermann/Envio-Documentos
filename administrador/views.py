@@ -1,7 +1,16 @@
-from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.urls import reverse_lazy
+from django.shortcuts import redirect, render
 
 
+def login_success(request):
+    if request.user.is_superuser:
+        return redirect("home")
+    else:
+        return redirect("fileupload")
+
+
+@login_required
 @user_passes_test(lambda u: u.is_superuser)
 def home(request):
     return render(request, 'administrador/home.html')

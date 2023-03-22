@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     path('home/', views.home, name='home'),
-    #path('', RedirectView.as_view(url='home')),
     path('checa-documentos/', views.checa_documents, name="checa_documentos"),
+    path('login_success/', views.login_success, name='login_success')
 ]
