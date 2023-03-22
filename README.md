@@ -1,11 +1,11 @@
-# Projeto-facul
+# Projeto-facul 🐘α
 
 #### Comandos do Git 
 
 ###### Adquirir repositório
 
 $ git clone https://github.com/v-Hermann/Projeto-facul.git
-#baixar do repositório remoto
+-baixar do repositório remoto
 
 ==========================================================================
 
