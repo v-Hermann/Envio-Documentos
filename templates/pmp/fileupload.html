@@ -10,117 +10,255 @@
 </head>
 
 <body>
+    <div id="modal" class="modal" onclick="closeModal()">
+        <img id="modal-image" src="" alt="Preview" style="max-width: 100%;">
+        <div id="modal-pdf-container" onclick="event.stopPropagation();">
+            <iframe id="modal-pdf" style="border: none; max-width: 100%; max-height: 100%;"></iframe>
+        </div>
+    </div>
+    
+    
+    
+    
+    <div>
     <form action="{% url 'fileupload' %}" method="POST" id="fileupload-form" enctype="multipart/form-data">
         {% csrf_token %}
         <div>
+            <div id="fileupload-div">
+                <span>Anexe aqui seu Registro de Empregado Preenchido</span>
+                <input type="file" accept="image/*,application/pdf" name="filename
+                " id="fileupload-input_file1" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container1" style="display:none;">
+                <img id="preview-image1" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf1" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
 
-        <div id=fileupload-div>
-            <span>Anexe aqui seu Registro de Empregado Preenchido</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui sua carteira de identidade / CPF</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file2" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container2" style="display:none;">
+                <img id="preview-image2" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf2" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div><div id="fileupload-div">
+                <span>Anexe aqui seu comprovante de residência</span>
+                <input type="file" accept="image/*,application/pdf" name="filename3" id="fileupload-input_file3" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container3" style="display:none;">
+                <img id="preview-image3" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf3" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui seu grau de instrução</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file4" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container4" style="display:none;">
+                <img id="preview-image4" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf4" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui a Carteira do Conselho Regional de sua categoria</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file5" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container5" style="display:none;">
+                <img id="preview-image5" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf5" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui seu título de eleitor</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file6" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container6" style="display:none;">
+                <img id="preview-image6" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf6" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui sua certidão do cartório eleitoral que comprova quitação com as obrigações legais</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file7" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container7" style="display:none;">
+                <img id="preview-image7" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf7" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui a certidão de casamento e de filhos (menores de 14 anos)</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file8" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container8" style="display:none;">
+                <img id="preview-image8" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf8" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui CPF dos dependentes (caso tenha)</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file9" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container9" style="display:none;">
+                <img id="preview-image9" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf9" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui seu certificado de reservista (masculino)</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file10" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container10" style="display:none;">
+                <img id="preview-image10" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf10" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui sua declaração de bens ou imposto de renda</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file11" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container11" style="display:none;">
+                <img id="preview-image11" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf11" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui declaração de que não é aposentado por invalidez</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file12" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container12" style="display:none;">
+                <img id="preview-image12" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf12" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui certidão de não acúmulo preenchida</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file13" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container13" style="display:none;">
+                <img id="preview-image13" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf13" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui declaração de nepotismo</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file14" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container14" style="display:none;">
+                <img id="preview-image14" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf14" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui Atestado de Saúde Ocupacional (ASO)</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file15" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container15" style="display:none;">
+                <img id="preview-image15" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf15" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui certidão negativa criminal</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file16" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container16" style="display:none;">
+                <img id="preview-image16" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf16" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui certidão negativa criminal PF</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file17" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container17" style="display:none;">
+                <img id="preview-image17" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf17" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
+            <div id="fileupload-div">
+                <span>Anexe aqui declaração de não ter sofrido penalidades administrativas</span>
+                <input type="file" accept="image/*,application/pdf" name="filename2" id="fileupload-input_file18" onchange="previewFile(this)">
+            </div>
+            <div id="preview-container18" style="display:none;">
+                <img id="preview-image18" src="" alt="Preview" style="max-width: 100%; max-height: 300px; display:none;">
+                <embed id="preview-pdf18" src="" style="max-width: 100%; max-height: 300px; display:none;">
+            </div>
 
-        <div id=fileupload-div>
-            <span>Anexe aqui sua carteira de identidade / CPF</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-
-        <div id=fileupload-div>
-            <span>Anexe aqui seu PIS/PASEP</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
+    </div>
     
-        <div id=fileupload-div>
-            <span>Anexe aqui seu comprovante de residência</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-
-        <div id=fileupload-div>
-            <span>Anexe aqui seu grau de instrução</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-
-        <div id=fileupload-div>
-            <span>Anexe aqui a Carteira do Conselho Regional de sua categoria</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-
-        <div id=fileupload-div>
-            <span>Anexe aqui sua carteira de habilitação</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-
-        <div id=fileupload-div>
-            <span>Anexe aqui seu título de eleitor</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-        
-        <div id=fileupload-div>
-            <span>Anexe aqui sua carteira de trabalho</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-    
-        <div id=fileupload-div>
-            <span>Anexe aqui sua certidão do cartório eleitoral que comprova quitação com as obrigações legais</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-
-        <div id=fileupload-div>
-            <span>Anexe aqui a certidão de casamento e de filhos (menores de 14 anos)</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-    
-        <div id=fileupload-div>
-            <span>Anexe aqui CPF dos dependentes (caso tenha)</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-    
-        <div id=fileupload-div>
-            <span>Anexe aqui seu certificado de reservista (masculino)</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-    
-        <div id=fileupload-div>
-            <span>Anexe aqui sua declaração de bens ou imposto de renda</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-    
-        <div id=fileupload-div>
-            <span>Anexe aqui declaração de que não é aposentado por invalidez</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-    
-        <div id=fileupload-div>
-            <span>Anexe aqui certidão de não acúmulo preenchida</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-
-        <div id=fileupload-div>
-            <span>Anexe aqui declaração de nepotismo</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-
-        <div id=fileupload-div>
-            <span>Anexe aqui Atestado de Saúde Ocupacional (ASO)</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-
-        <div id=fileupload-div>
-            <span>Anexe aqui certidão negativa criminal</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-
-        <div id=fileupload-div>
-            <span>Anexe aqui certidão negativa criminal PF</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-    
-        <div id=fileupload-div>
-            <span>Anexe aqui declaração de não ter sofrido penalidades administrativas</span>
-            <input type="file" accept="image/*" name="filename" id="fileupload-input_file">
-        </div>
-        </div>
-
         <input type="submit" value="Enviar documentos">
     </form>
+
+</div>
 </body>
 </html>
+<script>
+    function previewFile(input) {
+        let file = input.files[0];
+        const fileId = input.id;
+        const index = fileId.replace('fileupload-input_file', '');
+        const previewImage = document.getElementById(`preview-image${index}`);
+        const previewPdf = document.getElementById(`preview-pdf${index}`);
+        const previewContainer = document.getElementById(`preview-container${index}`);
+    
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const fileMimeType = file.type;
+                const imageDataUrl = event.target.result;
+                
+                if (fileMimeType.startsWith("image/")) {
+                    previewImage.src = imageDataUrl;
+                    previewImage
+                    .style.display = "block";
+                    previewPdf.style.display = "none";
+                } else if (fileMimeType === "application/pdf") {
+                    previewPdf.src = imageDataUrl;
+                    previewImage.style.display = "none";
+                    previewPdf.style.display = "block";
+                } else {
+                    // Não exibir pré-visualização para outros tipos de arquivo
+                    previewImage.style.display = "none";
+                    previewPdf.style.display = "none";
+                }
+
+                previewContainer.style.display = "block";
+            };
+
+            reader.readAsDataURL(file);
+            previewImage.onclick = function () {
+        openModal(previewImage, previewPdf);
+    };
+    previewPdf.onclick = function () {
+        openModal(previewImage, previewPdf);
+    };
+        } else {
+            // Ocultar pré-visualização se não houver arquivo selecionado
+            previewContainer.style.display = "none";
+            previewImage.style.display = "none";
+            previewPdf.style.display = "none";
+        }
+    }
+    function openModal(previewImage, previewPdf) {
+    const modal = document.getElementById("modal");
+    const modalImage = document.getElementById("modal-image");
+    const modalPdf = document.getElementById("modal-pdf");
+    const modalPdfContainer = document.getElementById("modal-pdf-container");
+
+    if (previewImage.src) {
+        modalImage.src = previewImage.src;
+        modalImage.style.display = "block";
+        modalPdfContainer.style.display = "none";
+    } else if (previewPdf.src) {
+        modalPdf.src = previewPdf.src;
+        modalImage.style.display = "none";
+        modalPdfContainer.style.display = "block";
+    } else {
+        return;
+    }
+
+    modal.style.display = "block";
+}
+
+
+
+function closeModal() {
+    const modal = document.getElementById("modal");
+    const modalImage = document.getElementById("modal-image");
+    const modalPdf = document.getElementById("modal-pdf");
+
+    modal.style.display = "none";
+    modalImage.style.display = "none";
+    modalPdf.style.display = "none";
+    modalPdf.src = "";
+}
+
+
+
+    </script>
