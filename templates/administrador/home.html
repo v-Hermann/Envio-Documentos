@@ -1,35 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
     <meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" href="{% static 'administrador/home/home.css' %}">
     <title>Home Administrador</title>
 </head>
 <body>
-<div class="fixed-header">
-    <div class="dropdown">
-        <p>Menu</p>
-        <div class="dropdown-content">
-            <ul>
-                <li><a href="#">Alteração Cadastral</a></li>
-                <li><a href="../checa-documentos">Análise Documental</a></li>
-                <li><a href="#">Reabrir processo individual</a></li>
-            </ul>
-        </div>
-    </div>
-    <br><br><br><br><br>
-    <div class="dropdown">
-        <p>Bem-vindo, {{ request.user.email }}</p>
-        <div class="dropdown-content">
-            <ul>
-                <li><a href="#">Alteração Cadastral</a></li>
-                <li><a href="../checa-documentos">Análise Documental</a></li>
-                <li><a href="#">Reabrir processo individual</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
+    {% include 'administrador/admin_header.html' %}
+    {% for user in users %}
+        <p>{{user}}</p><br>
+    {% endfor %}
 </body>
 </html>

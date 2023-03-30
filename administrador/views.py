@@ -12,7 +12,13 @@ def login_success(request):
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def home(request):
-    return render(request, 'administrador/home.html')
+    
+    user = 0
+    context = {
+        'user': user,
+    }
+
+    return render(request, 'administrador/home.html', context=context)
 
 
 @login_required
