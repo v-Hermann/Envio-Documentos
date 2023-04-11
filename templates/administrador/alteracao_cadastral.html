@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'administrador/checa_documentos/style.css' %}">
+    <title>Análise documental</title>
+</head>
+<body>
+
+{% block content %}
+<h2>Atualizar perfil</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+</form>
+{% endblock %}
+
+</body>
+</html>

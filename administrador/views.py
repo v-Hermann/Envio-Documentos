@@ -25,3 +25,9 @@ def home(request):
 @user_passes_test(lambda u: u.is_superuser)
 def checa_documents(request):
     return render(request, 'administrador/checa_documentos.html')
+
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def alteracao_cadastral(request):
+    return render(request, 'administrador/alteracao_cadastral.html')
