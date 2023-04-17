@@ -1,0 +1,16 @@
+<head>
+  {% load static %}
+    <link rel="stylesheet" href="{% static 'administrador/home/home.css' %}">
+</head>
+<body>
+{% include 'administrador/admin_header.html' %}
+{% block content %}
+  <h1>Edit User Account</h1>
+  <p>Editing account for {{ user.email }}</p>
+  <form method="post" action="{% url 'edit_user' pk=user.pk %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save changes</button>
+  </form>
+{% endblock %}
+</body>

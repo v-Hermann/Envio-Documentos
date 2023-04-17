@@ -1,21 +1,33 @@
-<!DOCTYPE html>
-<html>
 <head>
-    <meta charset="UTF-8">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'administrador/checa_documentos/style.css' %}">
-    <title>Análise documental</title>
+  {% load static %}
+    <link rel="stylesheet" href="{% static 'administrador/home/home.css' %}">
 </head>
 <body>
+{% include 'administrador/admin_header.html' %}
 
 {% block content %}
-<h2>Atualizar perfil</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Salvar</button>
-</form>
+  <h1>All Users</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Full Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.email }}</td>
+          <td>{{ user.fullname }}</td>
+          <td><a href="{% url 'edit_user' user.pk %}">Edit</a></td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="3">No users found.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}
-
 </body>
-</html>

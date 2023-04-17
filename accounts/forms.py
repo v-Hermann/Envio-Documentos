@@ -1,15 +1,27 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.hashers import make_password
 from .models import CustomUser
 
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'fullname')
+        fields = ('email', 'fullname')
 
 
 class CustomUserChangeForm(UserChangeForm):
+    password = forms.CharField(widget=forms.PasswordInput(), required=False)
+
     class Meta:
         model = CustomUser
-        fields = ('username', 'email', 'fullname')
+        fields = ('email', 'fullname', 'password')
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if password:
+            # hash the password before saving
+            return make_password(password)
+        else:
+            # if the password is not provided, return the existing password
+            return self.instance.password
