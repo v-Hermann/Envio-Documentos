@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Approval</title>
+  </head>
+  <body>
+    <h1>Document Approval System</h1>
+    <h2>Document Details:</h2>
+    {% if documents %}
+      {% for document in documents %}
+        <p>Title: {{ document.title }}</p>
+        <p>Author: {{ document.author }}</p>
+        {% if document.file.name.endswith('.pdf') %}
+          <iframe src="{{ document.file.url }}" width="600" height="800"></iframe>
+        {% elif document.file.name.endswith('.jpg') or document.file.name.endswith('.jpeg') or document.file.name.endswith('.png') %}
+          <img src="{{ document.file.url }}" width="600">
+        {% else %}
+          <p>File: <a href="{{ document.file.url }}" target="_blank">{{ document.file.name }}</a></p>
+        {% endif %}
+        <form method="POST" action="{% url 'document_approval' %}">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="approve">
+          <input type="hidden" name="document_id" value="{{ document.id }}">
+          <input type="submit" value="Approve">
+        </form>
+        <form method="POST" action="{% url 'document_approval' %}">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="disapprove">
+          <input type="hidden" name="document_id" value="{{ document.id }}">
+          <input type="submit" value="Disapprove">
+        </form>
+        <hr>
+      {% endfor %}
+    {% else %}
+      <p>No documents to approve or disapprove.</p>
+    {% endif %}
+  </body>
+</html>

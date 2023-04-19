@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Approval Form</title>
+  </head>
+  <body>
+    <h1>Document Approval Form</h1>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table>
+        {% for i in '123456789101112131415161718' %}
+          <tr>
+            <td>
+              <label for="document_{{ i }}">{{ document_names.i }}:</label>
+              <input type="file" name="document_{{ i }}" id="document_{{ i }}" accept="image/*,.pdf" onchange="preview_image(event, 'preview_{{ i }}')">
+            </td>
+            <td>
+              <img id="preview_{{ i }}" width="200">
+            </td>
+          </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="Submit">
+          </td>
+        </tr>
+      </table>
+    </form>
+    <script>
+      function preview_image(event, preview_id) {
+        var reader = new FileReader();
+        reader.onload = function() {
+          var preview = document.getElementById(preview_id);
+          preview.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+      }
+    </script>
+  </body>
+</html>

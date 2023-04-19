@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import user_list, edit_user
+from .views import user_list, edit_user, document_approval
 
 
 urlpatterns = [
@@ -9,4 +9,6 @@ urlpatterns = [
     path('checa-documentos/', views.checa_documents, name="checa_documentos"),
     path('alteracao_cadastral/', user_list, name='alteracao_cadastral'),
     path('<int:pk>/edit/', edit_user, name='edit_user'),
+    path('document_approval/', document_approval, name="document_approval/"),
+
 ]
