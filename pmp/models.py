@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 class FilesUploaded(models.Model):
@@ -10,9 +10,13 @@ class FilesUploaded(models.Model):
         return self.title
 
 
-class Document(models.Model):
+def upload_to(instance, filename):
+    return f"documents_pending/{instance.author.pk}_{instance.author.fullname}/{filename}"
+
+
+class DocumentPending(models.Model):
     title = models.CharField(max_length=255)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    file = models.FileField(upload_to='documents_pending/')
+    author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    file = models.FileField(upload_to=upload_to)
     status = models.CharField(max_length=10, default='pending')
     uploaded_at = models.DateTimeField(auto_now_add=True)

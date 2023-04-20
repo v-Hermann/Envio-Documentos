@@ -10,6 +10,8 @@
       {% for document in documents %}
         <p>Title: {{ document.title }}</p>
         <p>Author: {{ document.author }}</p>
+        <p>Status: {{ document.status }}</p>
+        <p>Uploaded at: {{ document.uploaded_at }}</p>
         {% if document.file.name.endswith('.pdf') %}
           <iframe src="{{ document.file.url }}" width="600" height="800"></iframe>
         {% elif document.file.name.endswith('.jpg') or document.file.name.endswith('.jpeg') or document.file.name.endswith('.png') %}

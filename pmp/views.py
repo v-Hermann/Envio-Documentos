@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import FilesUploaded, Document
+from .models import FilesUploaded, DocumentPending
 from django.contrib import messages
 
 
@@ -43,10 +43,10 @@ def document_approval_form(request):
     if request.method == 'POST':
         for i in range(1, 19):
             title = document_names[i - 1]
-            author = request.user.profile
+            author = request.user
             file = request.FILES.get(f'document_{i}')
             if file:
-                Document.objects.create(title=title, author=author, file=file, status='pending')
+                DocumentPending.objects.create(title=title, author=author, file=file, status='pending')
         messages.success(request, 'Documents submitted for approval.')
-        return redirect('document_approval')
-    return render(request, 'document_approval.html', {'document_names': document_names})
+        return redirect('document_approval_form')
+    return render(request, 'pmp/document_approval_form.html', context)
