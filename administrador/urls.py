@@ -9,6 +9,6 @@ urlpatterns = [
     path('checa-documentos/', views.checa_documents, name="checa_documentos"),
     path('alteracao_cadastral/', user_list, name='alteracao_cadastral'),
     path('<int:pk>/edit/', edit_user, name='edit_user'),
-    path('document_approval/', document_approval, name="document_approval/"),
+    path('document_approval/', document_approval, name="document_approval"),
 
 ]

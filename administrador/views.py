@@ -5,7 +5,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib import messages
 from accounts.forms import CustomUserChangeForm
 from accounts.models import CustomUser
-from .models import Document
+from pmp.models import DocumentPending
 
 
 def login_success(request):
@@ -50,11 +50,11 @@ def edit_user(request, pk):
 
 
 def document_approval(request):
-    documents = Document.objects.all()
+    documents = DocumentPending.objects.all()
     if request.method == 'POST':
         action = request.POST.get('action')
         document_id = request.POST.get('document_id')
-        document = get_object_or_404(Document, id=document_id)
+        document = get_object_or_404(DocumentPending, id=document_id)
         if action == 'approve':
             # save the document to the user's folder
             document.save_to_user_folder(request.user)
@@ -69,4 +69,4 @@ def document_approval(request):
             messages.error(request, 'Invalid action.')
         return redirect('document_approval')
     else:
-        return render(request, 'document_approval.html', {'documents': documents})
+        return render(request, 'administrador/document_approval.html', {'documents': documents})
