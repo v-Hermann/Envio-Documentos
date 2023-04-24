@@ -6,40 +6,38 @@
   <body>
     <h1>Document Approval System</h1>
     <h2>Document Details:</h2>
-    {% if documents %} {% for document in documents %}
-    <p>Title: {{ document.title }}</p>
-    <p>Author: {{ document.author.fullname }}</p>
-    <p>Status: {{ document.status }}</p>
-    <p>Uploaded at: {{ document.uploaded_at }}</p>
-    {% if document.file.url|slice:"-4:" == ".pdf" %}
-    <iframe src="{{ document.file.url }}" width="600" height="800"></iframe>
-    {% elif document.file.url|slice:"-4:" == ".jpg" or
-    document.file.url|slice:"-5:" == ".jpeg" or document.file.url|slice:"-4:" ==
-    ".png" %}
-    <img src="{{ document.file.url }}" width="600" />
+    {% if documents %}
+      {% for document in documents %}
+        <p>Title: {{ document.title }}</p>
+        <p>Author: {{ document.author.fullname }}</p>
+        <p>Status: {{ document.status }}</p>
+        <p>Uploaded at: {{ document.uploaded_at }}</p>
+        {% if document.file.name|lower|slice:"-4:" == ".pdf" %}
+          <embed src="{% url 'document_preview' document.id %}" type="application/pdf" width="600" height="800" />
+        {% elif document.file.name|lower|slice:"-4:" == ".jpg" or document.file.name|lower|slice:"-5:" == ".jpeg" or document.file.name|lower|slice:"-4:" == ".png" %}
+          <img src="{% url 'document_preview' document.id %}" width="600" />
+        {% else %}
+          <p>
+            File:
+            <a href="{{ document.file.url }}" target="_blank">{{ document.file.name }}</a>
+          </p>
+        {% endif %}
+        <form method="POST" action="{% url 'document_approval' %}">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="approve" />
+          <input type="hidden" name="document_id" value="{{ document.id }}" />
+          <input type="submit" value="Approve" />
+        </form>
+        <form method="POST" action="{% url 'document_approval' %}">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="disapprove" />
+          <input type="hidden" name="document_id" value="{{ document.id }}" />
+          <input type="submit" value="Disapprove" />
+        </form>
+        <hr />
+      {% endfor %}
     {% else %}
-    <p>
-      File:
-      <a href="{{ document.file.url }}" target="_blank"
-        >{{ document.file.name }}</a
-      >
-    </p>
-    {% endif %}
-    <form method="POST" action="{% url 'document_approval' %}">
-      {% csrf_token %}
-      <input type="hidden" name="action" value="approve" />
-      <input type="hidden" name="document_id" value="{{ document.id }}" />
-      <input type="submit" value="Approve" />
-    </form>
-    <form method="POST" action="{% url 'document_approval' %}">
-      {% csrf_token %}
-      <input type="hidden" name="action" value="disapprove" />
-      <input type="hidden" name="document_id" value="{{ document.id }}" />
-      <input type="submit" value="Disapprove" />
-    </form>
-    <hr />
-    {% endfor %} {% else %}
-    <p>No documents to approve or disapprove.</p>
+      <p>No documents to approve or disapprove.</p>
     {% endif %}
   </body>
 </html>

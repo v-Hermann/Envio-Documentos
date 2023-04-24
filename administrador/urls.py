@@ -10,5 +10,5 @@ urlpatterns = [
     path('alteracao_cadastral/', user_list, name='alteracao_cadastral'),
     path('<int:pk>/edit/', edit_user, name='edit_user'),
     path('document_approval/', document_approval, name="document_approval"),
-
+    path('document_preview/<int:document_id>/', views.document_preview, name='document_preview'),
 ]

@@ -6,6 +6,8 @@ from django.contrib import messages
 from accounts.forms import CustomUserChangeForm
 from accounts.models import CustomUser
 from pmp.models import DocumentPending
+from django.http import FileResponse, Http404
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 
 def login_success(request):
@@ -70,3 +72,20 @@ def document_approval(request):
         return redirect('document_approval')
     else:
         return render(request, 'administrador/document_approval.html', {'documents': documents})
+
+
+@xframe_options_exempt
+def document_preview(request, document_id):
+    document = get_object_or_404(DocumentPending, id=document_id)
+    if document.file:
+        # Check if the file is an image or pdf
+        if document.file.name.endswith('.pdf'):
+            response = FileResponse(document.file, content_type='application/pdf')
+            response['X-Frame-Options'] = 'ALLOW-FROM *'
+            return response
+        elif document.file.name.endswith('.jpg') or document.file.name.endswith('.jpeg') or document.file.name.endswith('.png'):
+            return FileResponse(document.file, content_type='image/jpeg')
+        else:
+            raise Http404("File type not supported.")
+    else:
+        raise Http404("File not found.")
