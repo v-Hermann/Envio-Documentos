@@ -19,7 +19,7 @@
         {% else %}
           <p>
             File:
-            <a href="{{ document.file.url }}" target="_blank">{{ document.file.name }}</a>
+            <a href="{% url 'document_preview' document.id %}" target="_blank">{{ document.file.name }}</a>
           </p>
         {% endif %}
         <form method="POST" action="{% url 'document_approval' %}">
