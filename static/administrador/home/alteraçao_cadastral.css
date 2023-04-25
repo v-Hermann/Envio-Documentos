@@ -1,0 +1,30 @@
+body {
+    background-color: rgb(199, 231, 241);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, p {
+    text-align: center;
+    justify-content: center;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+td, th {
+    padding: .7em;
+    margin: 0;
+    /*border: 1px solid #ccc;*/
+    text-align: center;
+  }
+  
+  td{
+    font-weight:bold;
+    /*background-color: #EEE;*/
+  }
+  
+  table{
+    width: 100%;
+    margin-bottom : .5em;
+    table-layout: fixed;
+    text-align: center;
+  }
