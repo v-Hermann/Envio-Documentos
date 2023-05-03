@@ -7,7 +7,10 @@ from .models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('email', 'fullname')
+        fields = ('fullname', 'email')
+        labels = {
+            'fullname': 'Nome completo',
+        }
 
 
 class CustomUserChangeForm(UserChangeForm):
@@ -15,7 +18,7 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
-        fields = ('email', 'fullname', 'password')
+        fields = ('fullname', 'email', 'password')
 
     def clean_password(self):
         password = self.cleaned_data.get('password')

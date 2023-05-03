@@ -29,14 +29,18 @@ h2 {
     margin: 0px 0px 5px 15px;
 }
 
+p {
+    margin-top: 4px;
+}
+
 label {
     margin-left: 5px;
     font-weight: bold;
 }
 
-input[type="email"], input[type="password"] {
+input[type="email"], input[type="password"], input[type="text"]{
     width: 50vh;
-    padding: 12px 20px;
+    padding: 9px 20px;
     margin: 8px 0px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -56,6 +60,10 @@ button[type="submit"], input[type="submit"]{
 
 button[type="submit"], input[type="submit"]:hover {
     background-color: #45a049;
+}
+
+button[type="submit"]:hover {
+    background-color: #3897a8;
 }
 
 a {

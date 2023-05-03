@@ -6,5 +6,8 @@ class CustomUser(AbstractUser):
     # add additional fields in here
     fullname = models.CharField(max_length=40)
 
+    # use the email address as the unique identifier for each user
+    email = models.EmailField(unique=True)
+
     def __str__(self):
         return self.email
