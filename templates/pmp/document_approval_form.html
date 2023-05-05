@@ -9,34 +9,41 @@
     <h1>Document Approval Form</h1>
     <form enctype="multipart/form-data" method="post">
       {% csrf_token %}
-      <table>
-        {% for item in document_names %}
-        <tr>
-          <td>
-            <label for="document_{{ forloop.counter }}">{{ item }}:</label>
-            <input
-              accept="image/*,.pdf"
-              id="document_{{ forloop.counter }}"
-              name="document_{{ forloop.counter }}"
-              onchange="preview_file(event, 'preview_{{ forloop.counter }}')"
-              type="file"
-            />
-          </td>
-          <td>
-            <div
-              class="preview"
-              id="preview_{{ forloop.counter }}"
-              onclick="toggle_fullscreen(this)"
-            ></div>
-          </td>
-        </tr>
-        {% endfor %}
-        <tr>
-          <td colspan="2">
-            <input type="submit" value="Submit" />
-          </td>
-        </tr>
-      </table>
+      {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+      {% endif %}
+      {% if success_message %}
+        <p class="success">{{ success_message }}</p>
+      {% else %}
+        <table>
+          {% for item in document_names %}
+          <tr>
+            <td>
+              <label for="document_{{ forloop.counter }}">{{ item }}:</label>
+              <input
+                accept="image/*,.pdf"
+                id="document_{{ forloop.counter }}"
+                name="document_{{ forloop.counter }}"
+                onchange="preview_file(event, 'preview_{{ forloop.counter }}')"
+                type="file"
+              />
+            </td>
+            <td>
+              <div
+                class="preview"
+                id="preview_{{ forloop.counter }}"
+                onclick="toggle_fullscreen(this)"
+              ></div>
+            </td>
+          </tr>
+          {% endfor %}
+          <tr>
+            <td colspan="2">
+              <input type="submit" value="Submit" />
+            </td>
+          </tr>
+        </table>
+      {% endif %}
     </form>
     <script>
       function preview_file(event, preview_id) {

@@ -38,15 +38,23 @@ def document_approval_form(request):
         'Declaração de não ter sofrido penalidades administrativas'
     ]
     context = {
-        'document_names': document_names
+        'document_names': document_names,
+        'success_message': '',
+        'error_message': ''
     }
     if request.method == 'POST':
-        for i in range(1, 19):
-            title = document_names[i - 1]
-            author = request.user
-            file = request.FILES.get(f'document_{i}')
-            if file:
+        if DocumentPending.objects.filter(author=request.user).exists():
+            context['success_message'] = 'You have already submitted the form.'
+        else:
+            for i in range(1, 19):
+                title = document_names[i - 1]
+                author = request.user
+                file = request.FILES.get(f'document_{i}')
+                if not file:
+                    context['error_message'] = f'Please upload {document_names[i - 1]}'
+                    break
                 DocumentPending.objects.create(title=title, author=author, file=file, status='pending')
-        messages.success(request, 'Documents submitted for approval.')
-        return redirect('document_approval_form')
+            else:
+                context['success_message'] = 'Documents submitted for approval.'
+                return render(request, 'pmp/document_approval_form.html', context)
     return render(request, 'pmp/document_approval_form.html', context)
