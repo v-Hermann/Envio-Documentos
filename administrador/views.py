@@ -53,7 +53,7 @@ def edit_user(request, pk):
 
 
 def document_approval(request):
-    documents = DocumentPending.objects.all()
+    documents = DocumentPending.objects.filter(status='pending')
     if request.method == 'POST':
         action = request.POST.get('action')
         document_id = request.POST.get('document_id')
@@ -72,11 +72,8 @@ def document_approval(request):
                 os.rmdir(parent_folder)
             messages.success(request, f'Document "{document.title}" has been approved and saved to your folder.')
         elif action == 'disapprove':
-            # delete the document file from the file system
-            if os.path.isfile(document.file.path):
-                os.remove(document.file.path)
-            # delete the document from the approval queue
-            document.delete()
+            document.status = 'disapproved'
+            document.save()
             # delete the parent folder if it's empty
             parent_folder = os.path.dirname(document.file.path)
             if not os.listdir(parent_folder):

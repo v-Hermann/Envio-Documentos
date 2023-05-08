@@ -17,35 +17,37 @@ def fileupload(request):
 
 
 def document_approval_form(request):
-    document_names = [
-        'Registro de Empregado Preenchido',
-        'Carteira de Identidade/CPF',
-        'Comprovante de Residência',
-        'Grau de Instrução',
-        'Carteira do Conselho Regional de sua categoria',
-        'Título de Eleitor',
-        'Certidão do Cartório Eleitoral que comprova quitação com as obrigações legais',
-        'Certidão de Casamento e de filhos (menores de 14 anos)',
-        'CPF dos dependentes (caso tenha)',
-        'Certificado de Reservista (masculino)',
-        'Declaração de Bens ou Imposto de Renda',
-        'Declaração de que não é aposentado por invalidez',
-        'Certidão de não acúmulo preenchida',
-        'Declaração de Nepotismo',
-        'Atestado de Saúde Ocupacional(ASO)',
-        'Certidão Negativa Criminal',
-        'Certidão Negativa Criminal PF',
-        'Declaração de não ter sofrido penalidades administrativas'
-    ]
-    context = {
-        'document_names': document_names,
-        'success_message': '',
-        'error_message': ''
-    }
-    if request.method == 'POST':
-        if DocumentPending.objects.filter(author=request.user).exists():
-            context['success_message'] = 'You have already submitted the form.'
-        else:
+    documents_pending = DocumentPending.objects.filter(author=request.user, status='disapproved')
+
+    # If there are no documents to resubmit, load all documents
+    if not documents_pending:
+        document_names = [
+            'Registro de Empregado Preenchido',
+            'Carteira de Identidade/CPF',
+            'Comprovante de Residência',
+            'Grau de Instrução',
+            'Carteira do Conselho Regional de sua categoria',
+            'Título de Eleitor',
+            'Certidão do Cartório Eleitoral que comprova quitação com as obrigações legais',
+            'Certidão de Casamento e de filhos (menores de 14 anos)',
+            'CPF dos dependentes (caso tenha)',
+            'Certificado de Reservista (masculino)',
+            'Declaração de Bens ou Imposto de Renda',
+            'Declaração de que não é aposentado por invalidez',
+            'Certidão de não acúmulo preenchida',
+            'Declaração de Nepotismo',
+            'Atestado de Saúde Ocupacional(ASO)',
+            'Certidão Negativa Criminal',
+            'Certidão Negativa Criminal PF',
+            'Declaração de não ter sofrido penalidades administrativas'
+        ]
+        context = {
+            'document_names': document_names,
+            'success_message': '',
+            'error_message': ''
+        }
+
+        if request.method == 'POST':
             for i in range(1, 19):
                 title = document_names[i - 1]
                 author = request.user
@@ -57,4 +59,28 @@ def document_approval_form(request):
             else:
                 context['success_message'] = 'Documents submitted for approval.'
                 return render(request, 'pmp/document_approval_form.html', context)
-    return render(request, 'pmp/document_approval_form.html', context)
+
+        return render(request, 'pmp/document_approval_form.html', context)
+
+    # Otherwise, load only documents that need to be resubmitted
+    else:
+        document_names = [doc.title for doc in documents_pending]
+        context = {
+            'document_names': document_names,
+            'success_message': '',
+            'error_message': ''
+        }
+
+        if request.method == 'POST':
+            for i, doc in enumerate(documents_pending):
+                # Update the pending document with the new file and status "pending"
+                new_file = request.FILES.get(f'document_{i + 1}')
+                if new_file:
+                    doc.file = new_file
+                    doc.status = 'pending'
+                    doc.save()
+            context['success_message'] = 'Documents resubmitted for approval.'
+            return render(request, 'pmp/document_approval_form.html', context)
+
+        return render(request, 'pmp/document_approval_form.html', context)
+

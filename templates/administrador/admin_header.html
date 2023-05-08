@@ -3,11 +3,11 @@
         <h20>Menu</H20>
         <div class="dropdown-content">
             <ul>
-                <li><a href="../alteracao_cadastral">Alteração Cadastral</a></li>
-                <li><a href="../document_approval">Análise Documental</a></li>
+                <li><a href="{% url 'alteracao_cadastral' %}">Alteração Cadastral</a></li>
+                <li><a href="{% url 'document_approval' %}">Análise Documental</a></li>
                 <li><a href="#">Reabrir processo individual</a></li>
             </ul>
         </div>
     </div>
-    <p>Bem-vindo, {{ request.user.username }}</p>
+    <p>Bem-vindo, {{ request.user.fullname }}</p>
 </div>
