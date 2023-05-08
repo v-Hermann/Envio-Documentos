@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Document Approval Form</title>
+    <title>Formulário de envio de documentos</title>
     {% load static %}
     <link href="{% static 'pmp/send_document.css' %}" rel="stylesheet" />
   </head>
   <body>
-    <h1>Document Approval Form</h1>
+    <h1>Formulário de envio de documentos</h1>
     <form enctype="multipart/form-data" method="post">
       {% csrf_token %}
       {% if error_message %}
@@ -39,7 +39,11 @@
           {% endfor %}
           <tr>
             <td colspan="2">
-              <input type="submit" value="Submit" />
+              {% if document_names %}
+              <input type="submit" value="Submit" id="submit-button" disabled/>
+              {% else %}
+              <p>Nenhum documento para enviar</p>
+              {% endif %}
             </td>
           </tr>
         </table>
@@ -49,6 +53,7 @@
       function preview_file(event, preview_id) {
         var file = event.target.files[0];
         var preview = document.getElementById(preview_id);
+        check_files();
 
         if (file) {
           preview.style.display = "block";
@@ -78,6 +83,21 @@
           element.classList.toggle("fullscreen");
         }
       }
+
+      function check_files() {
+        var file_inputs = document.getElementsByTagName("input");
+        var submit_button = document.getElementById("submit-button");
+        var all_files_selected = true;
+
+        for (var i = 0; i < file_inputs.length; i++) {
+            if (file_inputs[i].type == "file" && !file_inputs[i].value) {
+                all_files_selected = false;
+            }
+        }
+
+        submit_button.disabled = !all_files_selected;
+      }
+
     </script>
   </body>
 </html>

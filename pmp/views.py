@@ -18,9 +18,10 @@ def fileupload(request):
 
 def document_approval_form(request):
     documents_pending = DocumentPending.objects.filter(author=request.user, status='disapproved')
+    documents_with_status = DocumentPending.objects.filter(author=request.user)
 
     # If there are no documents to resubmit, load all documents
-    if not documents_pending:
+    if not documents_with_status:
         document_names = [
             'Registro de Empregado Preenchido',
             'Carteira de Identidade/CPF',
@@ -57,7 +58,7 @@ def document_approval_form(request):
                     break
                 DocumentPending.objects.create(title=title, author=author, file=file, status='pending')
             else:
-                context['success_message'] = 'Documents submitted for approval.'
+                context['success_message'] = 'Documentos enviados para aprovação.'
                 return render(request, 'pmp/document_approval_form.html', context)
 
         return render(request, 'pmp/document_approval_form.html', context)
@@ -79,7 +80,7 @@ def document_approval_form(request):
                     doc.file = new_file
                     doc.status = 'pending'
                     doc.save()
-            context['success_message'] = 'Documents resubmitted for approval.'
+            context['success_message'] = 'Documentos reenviados para aprovação.'
             return render(request, 'pmp/document_approval_form.html', context)
 
         return render(request, 'pmp/document_approval_form.html', context)
