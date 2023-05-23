@@ -8,6 +8,7 @@ from accounts.models import CustomUser
 from pmp.models import DocumentPending
 from django.http import FileResponse, Http404
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.conf import settings
 import os
 
 
@@ -15,7 +16,7 @@ def login_success(request):
     if request.user.is_superuser:
         return redirect("home")
     else:
-        return redirect("fileupload")
+        return redirect("document_approval_form")
 
 
 @login_required
@@ -59,19 +60,24 @@ def document_approval(request):
         document_id = request.POST.get('document_id')
         document = get_object_or_404(DocumentPending, id=document_id)
         if action == 'approve':
+            # Update the document status to 'approved'
+            document.status = 'approved'
+            document.save()
             # save the document to the user's folder
-            document.save_to_user_folder(request.user)
+            save_to_user_folder(document.author, document)
             # delete the document file from the file system
             if os.path.isfile(document.file.path):
                 os.remove(document.file.path)
-            # delete the document from the approval queue
-            document.delete()
             # delete the parent folder if it's empty
             parent_folder = os.path.dirname(document.file.path)
             if not os.listdir(parent_folder):
                 os.rmdir(parent_folder)
             messages.success(request, f'Document "{document.title}" has been approved and saved to your folder.')
         elif action == 'disapprove':
+            # delete the document file from the file system
+            if os.path.isfile(document.file.path):
+                os.remove(document.file.path)
+            # update the document status to 'disapproved'
             document.status = 'disapproved'
             document.save()
             # delete the parent folder if it's empty
@@ -101,3 +107,15 @@ def document_preview(request, document_id):
             raise Http404("File type not supported.")
     else:
         raise Http404("File not found.")
+
+
+def save_to_user_folder(user, document):
+    filename = os.path.basename(document.file.name)
+    user_folder_name = f"{user.fullname}_{user.pk}"
+    user_folder_path = os.path.join(settings.MEDIA_ROOT, user_folder_name)
+    if not os.path.exists(user_folder_path):
+        os.makedirs(user_folder_path)
+    destination_path = os.path.join(user_folder_path, filename)
+    if os.path.exists(destination_path):
+        os.remove(destination_path)
+    os.rename(document.file.path, destination_path)

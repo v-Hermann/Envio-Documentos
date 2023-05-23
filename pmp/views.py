@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import FilesUploaded, DocumentPending
+from django.db.models import Q
 from django.contrib import messages
 
 
@@ -18,7 +19,9 @@ def fileupload(request):
 
 def document_approval_form(request):
     documents_pending = DocumentPending.objects.filter(author=request.user, status='disapproved')
-    documents_with_status = DocumentPending.objects.filter(author=request.user)
+    documents_with_status = DocumentPending.objects.filter(
+        Q(author=request.user, status='pending') | Q(author=request.user, status='approved')
+    )
 
     # If there are no documents to resubmit, load all documents
     if not documents_with_status:
@@ -69,7 +72,7 @@ def document_approval_form(request):
         context = {
             'document_names': document_names,
             'success_message': '',
-            'error_message': ''
+            'error_message': 'Tem documento/s que precisam ser reenviados'
         }
 
         if request.method == 'POST':
