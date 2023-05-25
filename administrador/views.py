@@ -119,3 +119,34 @@ def save_to_user_folder(user, document):
     if os.path.exists(destination_path):
         os.remove(destination_path)
     os.rename(document.file.path, destination_path)
+
+
+def author_list(request):
+    authors = DocumentPending.objects.values('author', 'author__fullname').distinct()
+    return render(request, 'administrador/author_list.html', {'authors': authors})
+
+
+def document_list(request, author_id):
+    author = get_object_or_404(CustomUser, pk=author_id)
+    documents = DocumentPending.objects.filter(author=author)
+    return render(request, 'administrador/document_list.html', {'author': author, 'documents': documents})
+
+
+def change_status(request, document_id):
+    document = get_object_or_404(DocumentPending, pk=document_id)
+    if request.method == 'POST':
+        status = request.POST.get('status')
+        document.status = status
+        document.save()
+        return redirect('document_list', author_id=document.author.pk)
+    # Redirect to document list if accessed via GET request
+    return redirect('document_list', author_id=document.author.pk)
+
+
+def delete_document(request, document_id):
+    document = get_object_or_404(DocumentPending, pk=document_id)
+    if request.method == 'POST':
+        document.delete()
+        return redirect('document_list', author_id=document.author.pk)
+    # Redirect to document list if accessed via GET request
+    return redirect('document_list', author_id=document.author.pk)

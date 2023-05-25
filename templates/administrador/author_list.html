@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <title>Author List</title>
+</head>
+<body>
+    <h1>Author List</h1>
+    <ul>
+        {% for author in authors %}
+            <li><a href="{% url 'document_list' author.author %}">{{ author.author__fullname }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

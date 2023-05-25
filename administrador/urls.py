@@ -11,4 +11,8 @@ urlpatterns = [
     path('<int:pk>/edit/', edit_user, name='edit_user'),
     path('document_approval/', document_approval, name="document_approval"),
     path('document_preview/<int:document_id>/', views.document_preview, name='document_preview'),
+    path('authors/', views.author_list, name='author_list'),
+    path('documents/<int:author_id>/', views.document_list, name='document_list'),
+    path('documents/<int:document_id>/change_status/', views.change_status, name='change_status'),
+    path('documents/<int:document_id>/delete/', views.delete_document, name='delete_document'),
 ]

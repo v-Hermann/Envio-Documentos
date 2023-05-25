@@ -56,6 +56,8 @@ Bugs:
 - Renomear arquivo ao salvar
 - Apagar documentos desaprovados Check✔ 
 - Consertar e melhorar salvamento definitivo Check✔ 
+- Arrumar bug que não carrega o documento para ser reenviado quando ele é deletado via document.delete()
+
 Features:
 - Ajustar backend para aceitar envio de arquivo apenas quando foram enviados todos os necessários(Já foi implementado com js, mas tem que adequar o backend)
 - Implementar arquivos opcionais (Exemplo: Certidão de Casamento e de filhos (menores de 14 anos); CPF dos dependentes (caso tenha); Certificado de Reservista (masculino))
@@ -63,7 +65,7 @@ Features:
 - Dar uma resposta por que o arquivo foi desaprovado
 - Enviar emails com todas as atualizações da situação do usuário
 - Criar grupo de usuários
-- Implementar a página de reabrir processo, separado do sistema de aprovação também
+- Implementar a página de reabrir processo, separado do sistema de aprovação também Check✔
 - Privar acesso as páginas (@login_required, @user_passes_test)
 - Liberar acesso apenas para o usuário devido
 - Implementar mais botões de retorno
