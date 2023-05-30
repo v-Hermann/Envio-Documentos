@@ -53,7 +53,7 @@ Bugs:
 - Arrumar bug de direcionamento para página errada pós-login Check✔ 
 - Ajustar preview do envio
 - Ajustar preview da aprovação
-- Renomear arquivo ao salvar
+- Renomear arquivo ao salvar Check✔ 
 - Apagar documentos desaprovados Check✔ 
 - Consertar e melhorar salvamento definitivo Check✔ 
 - Arrumar bug que não carrega o documento para ser reenviado quando ele é deletado via document.delete()
@@ -73,4 +73,4 @@ Features:
 - Renomear os arquivos do projeto para padronização
 - Front-End agrádavel e explicativo
 - Pesquisar medidas de segurança
-- Limitar tamanho de arquivo
+- Limitar tamanho de arquivo Check✔ 
