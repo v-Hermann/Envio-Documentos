@@ -9,7 +9,7 @@ import unicodedata
 from django.contrib import messages
 
 
-MAX_FILE_SIZE_MB = 5  # Defina o tamanho máximo permitido em ‘megabytes’
+MAX_FILE_SIZE_MB = 1  # Defina o tamanho máximo permitido em ‘megabytes’
 
 
 @login_required
@@ -67,13 +67,13 @@ def document_approval_form(request):
                 if new_file:
                     if new_file.size > (MAX_FILE_SIZE_MB * 1024 * 1024):
                         error_messages.append(f'O arquivo {doc.title} excede o tamanho máximo permitido (5MB)')
-                        continue
-                    doc_name = filename_makeup(doc.title)
-                    file_extension = new_file.name.split('.')[-1]
-                    new_file_name = f'{doc_name}.{file_extension}'
-                    doc.file.save(new_file_name, new_file)
-                    doc.status = 'pending'
-                    doc.save()
+                    else:
+                        doc_name = filename_makeup(doc.title)
+                        file_extension = new_file.name.split('.')[-1]
+                        new_file_name = f'{doc_name}.{file_extension}'
+                        doc.file.save(new_file_name, new_file)
+                        doc.status = 'pending'
+                        doc.save()
 
             if error_messages:
                 context['error_message'] = ' '.join(error_messages)
@@ -96,16 +96,15 @@ def document_approval_form(request):
                 file = request.FILES.get(f'document_{i + 1}')
                 if not file:
                     error_messages.append(f'Por favor, faça o upload de {document_names[i]}')
-                    continue
                 elif file.size > (MAX_FILE_SIZE_MB * 1024 * 1024):
                     error_messages.append(f'O arquivo {document_names[i]} excede o tamanho máximo permitido (5MB)')
-                    continue
-                doc_name = filename_makeup(title)
-                file_extension = file.name.split('.')[-1]
-                new_file_name = f'{doc_name}.{file_extension}'
-                document = DocumentPending.objects.create(title=title, author=author, file=None, status='pending')
-                document.file.save(new_file_name, file)
-                document.save()
+                else:
+                    doc_name = filename_makeup(title)
+                    file_extension = file.name.split('.')[-1]
+                    new_file_name = f'{doc_name}.{file_extension}'
+                    document = DocumentPending.objects.create(title=title, author=author, file=None, status='pending')
+                    document.file.save(new_file_name, file)
+                    document.save()
 
             if error_messages:
                 context['error_message'] = ' '.join(error_messages)
