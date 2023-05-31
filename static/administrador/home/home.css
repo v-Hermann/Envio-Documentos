@@ -1,66 +1,37 @@
-body {
-  background-color: rgb(199, 231, 241);
+body{
+  margin: 0;
+  padding: 0;
+  background: #2d3436;
 }
-
-.dropdown {
-  position: center;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
+.middle{
   position: absolute;
-  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 }
-
-.dropdown:hover .dropdown-content {
+.btn{
+  position: relative;
   display: block;
-  background-color: lightblue;
-}
-
-/* Adicione o CSS aqui */
-.fixed-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background-color: lightblue;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
-}
-
-.header-content {
-  color: rgb(143, 52, 52);
-}
-
-.dropdown .dropdown-content a {
+  color: white;
+  font-size: 14px;
+  font-family: "montserrat";
   text-decoration: none;
-  color: rgb(13, 14, 13);
-  font-size: 22px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 300;
+  margin: 30px 0;
+  border: 2px solid #ff7675;
+  padding: 14px 60px;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 1s all ease;
+}
+.btn::before{
+  background: #ff7675;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: -1;
+  transition: all 0.6s ease;
 }
 
-.dropdown .dropdown-content li {
-  list-style: none;
-  padding-right: 24px;
-}
 
-
-.fixed-header .dropdown p {
-  font-size: 28px;
-  background-color: rgb(99, 187, 202);
-  border-radius: 15%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.fixed-header p {
-  font-size: 22px;
-  background-color: rgb(99, 187, 202);
-  border-radius: 15%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 550;
-}

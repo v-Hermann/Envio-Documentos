@@ -1,0 +1,22 @@
+.fixed-header{
+    background-color:#2d3436;
+    font-size: 17px;
+}
+
+.dropdown-content ul li a{
+    position: relative;
+    display: block;
+    color: white;
+    font-size: 14px;
+    font-family: "montserrat";
+    text-decoration: none;
+    border: 0.5px solid #ff7675;
+    padding: 14px 30px;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 1s all ease;
+}
+
+.dropdown-content ul li {
+    list-style: none;
+}

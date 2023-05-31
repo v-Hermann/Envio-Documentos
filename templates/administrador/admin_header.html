@@ -1,13 +1,17 @@
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'administrador/admin_header.css' %}">
+</head>
+
 <div class="fixed-header">
     <div class="dropdown">
-        <h20>Menu</H20>
         <div class="dropdown-content">
             <ul>
+                <li><a href="{% url 'home' %}">Página Inicial</a></li>
                 <li><a href="{% url 'alteracao_cadastral' %}">Alteração Cadastral</a></li>
                 <li><a href="{% url 'document_approval' %}">Análise Documental</a></li>
                 <li><a href="{% url 'author_list' %}">Reabrir processo individual</a></li>
             </ul>
         </div>
     </div>
-    <p>Bem-vindo, {{ request.user.fullname }}</p>
 </div>

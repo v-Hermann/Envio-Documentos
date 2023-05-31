@@ -4,24 +4,26 @@
     <meta charset="UTF-8">
     {% load static %}
     <title>Title</title>
+    <link rel="stylesheet" href="{% static 'administrador/home/document_list.css' %}">
+
 </head>
 <body>
-    <h1>Document List for {{ author }}</h1>
+    <h1>Lista de Documentos de {{ author }}</h1>
     <ul>
         {% for document in documents %}
             <li>{{ document.title }} - Status: {{ document.status }}</li>
             <form action="{% url 'change_status' document.id %}" method="POST">
                 {% csrf_token %}
                 <select name="status">
-                    <option value="pending" {% if document.status == 'pending' %}selected{% endif %}>Pending</option>
-                    <option value="approved" {% if document.status == 'approved' %}selected{% endif %}>Approved</option>
-                    <option value="disapproved" {% if document.status == 'disapproved' %}selected{% endif %}>Disapproved</option>
+                    <option value="pending" {% if document.status == 'pending' %}selected{% endif %}>Pendente</option>
+                    <option value="approved" {% if document.status == 'approved' %}selected{% endif %}>Aprovado</option>
+                    <option value="disapproved" {% if document.status == 'disapproved' %}selected{% endif %}>Desaprovado</option>
                 </select>
-                <button type="submit">Change Status</button>
+                <button type="submit">Atualizar Status</button>
             </form>
             <form action="{% url 'delete_document' document.id %}" method="POST">
                 {% csrf_token %}
-                <button type="submit">Delete Document</button>
+                <button type="submit" class="botao-delete">Deletar Documento</button>
             </form>
         {% empty %}
             <li>No documents found.</li>

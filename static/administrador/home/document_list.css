@@ -1,0 +1,37 @@
+body{
+    background-color: #2d3436;;
+    color: #ff7675;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+ul{
+    text-align: center;
+    text-decoration: none;
+    list-style: none;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+button{
+    margin-bottom: 6px;
+}
+
+.botao-delete{
+    margin-bottom: 20px;
+}
+
+h1{
+    position: relative;
+    display: block;
+    color: white;
+    font-size: 20px;
+    font-family: "montserrat";
+    text-decoration: none;
+    border: 0.5px solid #2d3436;
+    padding: 14px 30px;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: 1s all ease;
+    text-align: center;
+}

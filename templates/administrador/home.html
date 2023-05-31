@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="{% static 'administrador/home/home.css' %}">
     <title>Home Administrador</title>
 </head>
-<body>
-    {% include 'administrador/admin_header.html' %}
-    {% for user in users %}
-        <p>{{user}}</p><br>
-    {% endfor %}
-</body>
+  <body>
+    <div class="middle">
+      <a href="{% url 'alteracao_cadastral' %}" class="btn btn1">Alteração Cadastral</a>
+      <a href="{% url 'document_approval' %}" class="btn btn2">Aprovação de documentos</a>
+      <a href="{% url 'author_list' %}" class="btn btn3">Reabrir Processos</a>
+    </div>
+  </body>
 </html>

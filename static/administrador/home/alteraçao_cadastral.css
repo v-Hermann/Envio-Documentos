@@ -1,9 +1,11 @@
 body {
-    background-color: rgb(199, 231, 241);
+    background-color:#2d3436;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
 }
 
 h1, p {
+  color: white;
     text-align: center;
     justify-content: center;
     text-transform: uppercase;
@@ -15,6 +17,7 @@ td, th {
     margin: 0;
     /*border: 1px solid #ccc;*/
     text-align: center;
+    color: white;
   }
   
   td{
