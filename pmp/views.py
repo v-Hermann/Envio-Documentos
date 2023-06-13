@@ -7,6 +7,7 @@ import re
 import string
 import unicodedata
 from django.contrib import messages
+from django.contrib.auth import logout
 
 
 MAX_FILE_SIZE_MB = 1  # Defina o tamanho máximo permitido em ‘megabytes’
@@ -44,6 +45,12 @@ DOCUMENT_NAMES = [
     'Declaração negativa de penalidades administrativas'
 ]
 
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'Você foi desconectado com sucesso.')
+   # messages.clear()   --> Essa função não está funcionando e por isso está retornando uma mensagem pós logout.
+
+    return redirect('home')
 
 def document_approval_form(request):
     documents_pending = DocumentPending.objects.filter(author=request.user, status='disapproved')

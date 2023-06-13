@@ -6,6 +6,11 @@
     <link href="{% static 'pmp/send_document.css' %}" rel="stylesheet" />
   </head>
   <body>
+    <!-- Botão para logout -->
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Logoff</button>
+  </form>
     <h1>Formulário de envio de documentos</h1>
     <form enctype="multipart/form-data" method="post">
       {% csrf_token %}

@@ -46,7 +46,7 @@ ROOT_URLCONF = 'projeto_organizado.urls'
 
 LOGIN_REDIRECT_URL = 'login_success'
 LOGIN_URL = '/accounts/login/'
-
+LOGOUT_REDIRECT_URL = 'home'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

@@ -7,6 +7,11 @@
     <title>Home Administrador</title>
 </head>
   <body>
+    <!-- Botão para logout -->
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Logoff</button>
+  </form>
     <div class="middle">
       <a href="{% url 'alteracao_cadastral' %}" class="btn btn1">Alteração Cadastral</a>
       <a href="{% url 'document_approval' %}" class="btn btn2">Aprovação de documentos</a>

@@ -2,7 +2,11 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'administrador/admin_header.css' %}">
 </head>
-
+<!-- Botão para logout -->
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Logoff</button>
+</form>
 <div class="fixed-header">
     <div class="dropdown">
         <div class="dropdown-content">
