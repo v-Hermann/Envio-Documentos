@@ -8,7 +8,7 @@
 </head>
   <body>
     <!-- Botão para logout -->
-    <form action="{% url 'logout' %}" method="post">
+    <form action="{% url 'account_logout' %}" method="post">
       {% csrf_token %}
       <button type="submit">Logoff</button>
   </form>

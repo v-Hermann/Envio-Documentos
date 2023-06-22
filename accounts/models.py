@@ -10,6 +10,7 @@ class CustomUser(AbstractUser):
     # use the email address as the unique identifier for each user
     email = models.EmailField(unique=True)
 
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['fullname']
 

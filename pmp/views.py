@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.contrib.auth import logout
 
 
-MAX_FILE_SIZE_MB = 1  # Defina o tamanho máximo permitido em ‘megabytes’
+MAX_FILE_SIZE_MB = 10  # Defina o tamanho máximo permitido em ‘megabytes’
 
 
 @login_required
